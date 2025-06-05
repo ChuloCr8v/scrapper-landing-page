@@ -8,16 +8,22 @@ type Props = {};
 const Pricing = (props: Props) => {
   const data = [
     {
+      title: "Demo",
+      subtitle: "A sneek into what we can offer you",
+      price: 0,
+      features: ["500 products/one-time", "1 Competitor", "CSV exports"],
+    },
+    {
       title: "Starter",
       subtitle: "Perfect for small businesses",
       price: 99,
-      features: ["10,000 pagess/month", "1 Competitor", "CSV exports"],
+      features: ["10,000 pages/month", "1 Competitor", "CSV exports"],
     },
     {
       title: "Growth",
       subtitle: "For growing eCommerce stores",
       price: 99,
-      features: ["50,000 pagess/month", "5 Competitors", "API access"],
+      features: ["50,000 pages/month", "5 Competitors", "API access"],
     },
     {
       title: "Agency",
@@ -32,7 +38,7 @@ const Pricing = (props: Props) => {
   ];
 
   return (
-    <section id="pricing" className="">
+    <section>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -40,22 +46,22 @@ const Pricing = (props: Props) => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-4 max-w-7xl mx-auto">
           {data.map((item, index) => (
             <div
               className={twMerge(
                 "border rounded-xl p-4 py-6 space-y-6 relative flex flex-col",
-                index === 1 && "border-primary"
+                index === 2 && "border-primary pt-0"
               )}
               key={index}
             >
-              {index === 1 && (
+              {index === 2 && (
                 <div className="place-self-center bg-primary text-white rounded-full px-3 py-1 absolute -top-4 w-fit">
                   Most Popular
                 </div>
               )}
               <div className="">
-                <h2 className="font-semibold text-xl">{item.title}</h2>
+                <h2 className="font-semibold text-2xl">{item.title}</h2>
                 <p className="text-gray-600">{item.subtitle}</p>
               </div>
 

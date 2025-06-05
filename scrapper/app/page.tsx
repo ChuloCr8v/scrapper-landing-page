@@ -32,6 +32,8 @@ import UseCases from "./components/UseCases";
 import HowItWoks from "./components/HowItWoks";
 import Demo from "./components/Demo";
 import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
 
 export default function LandingPage() {
   return (
@@ -73,106 +75,8 @@ export default function LandingPage() {
       <HowItWoks />
       <Demo />
       <Pricing />
-
-      {/* Testimonials */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4">
-              eCommerce Brands We've Empowered
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <blockquote className="text-lg mb-4">
-                  "We found 12% of our products were priced too high – fixed it
-                  in a day and saw a 22% sales bump."
-                </blockquote>
-                <cite className="text-muted-foreground">
-                  – Lisa T., Amazon FBA Seller
-                </cite>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <blockquote className="text-lg mb-4">
-                  "Caught a competitor dumping inventory at 40% below MAP. Sent
-                  a cease-and-desist the same day."
-                </blockquote>
-                <cite className="text-muted-foreground">– DTC Brand Owner</cite>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  Can you scrape Amazon without getting blocked?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Yes – we rotate proxies and mimic human behavior to avoid
-                  detection.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>How often is data updated?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  As often as hourly (for pricing) or weekly (for reviews).
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Do you handle CAPTCHAs?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Yes, we automate solving CAPTCHAs so you don't have to.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <Testimonials />
+      <FAQ />
 
       {/* Final CTA */}
       <section className="py-20 bg-primary text-primary-foreground">

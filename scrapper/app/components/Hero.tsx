@@ -54,7 +54,7 @@ const Hero = (props: Props) => {
         autoPlay
         muted
         loop
-        className="absolute -top-8 border -z-0"
+        className="absolute top-[80%] z-0"
       >
         <source src="/hero-vid.mp4" type="video/mp4" />
       </video>

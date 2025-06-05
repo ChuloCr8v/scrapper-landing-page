@@ -32,7 +32,7 @@ const data = [
 ];
 const UseCases = (props: Props) => {
   return (
-    <section className="py-20 bg-muted/50 border-t relative z-20">
+    <section className="py-20 bg-gradient-to-b from-primary/20 to-transparent relative z-20">
       <div className="max-w-7xl flex flex-col justify-center items-center mx-auto px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
           How eCommerce Brands <br></br> Use Our Data

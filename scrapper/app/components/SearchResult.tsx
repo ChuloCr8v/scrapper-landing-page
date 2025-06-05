@@ -96,7 +96,7 @@ const SearchResult = (props: Props) => {
 
   return (
     <div className="space-y-4 w-full flex flex-col justify-center items-center">
-      <div className="max-w-3xl  w-full space-y-4">
+      <div className="max-w-7xl  w-full space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold">Competitve Price Analysis</h3>
           <div className="flex items-center gap-1">
@@ -105,11 +105,7 @@ const SearchResult = (props: Props) => {
             </Tag>
 
             <Popover
-              content={
-                <Info /> +
-                " " +
-                (tableView ? "View in list mode" : "View in table mode")
-              }
+              content={tableView ? "View in list mode" : "View in table mode"}
             >
               <Button
                 type="primary"
@@ -131,7 +127,7 @@ const SearchResult = (props: Props) => {
             {props.data.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between shadow-[0_-2px_6px_-1px_rgba(0,0,0,0.1)] border rounded-2xl p-4 bg-white/50 !backdrop-blur-2xl max-w-3xl w-full sticky top-0"
+                className="flex items-center justify-between border rounded-2xl p-4 bg-white overflow-hidden !backdrop-blur-2xl w-full sticky top-0"
               >
                 <div className="flex items-center gap-4">
                   <Image
@@ -143,7 +139,7 @@ const SearchResult = (props: Props) => {
                   />
 
                   <div className="space-y-2">
-                    <h2 className="font-semibold max-w-[350px]">
+                    <h2 className="font-semibold max-w-[550px]">
                       {item.title.slice(0, 60)}...
                     </h2>
 

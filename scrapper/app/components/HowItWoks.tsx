@@ -20,7 +20,7 @@ const HowItWoks = (props: Props) => {
     },
   ];
   return (
-    <section className="py-20 bg-white border-t">
+    <section className="py-20">
       <div className="flex flex-col justify-center items-center px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">

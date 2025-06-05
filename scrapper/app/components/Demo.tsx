@@ -1,10 +1,10 @@
 "use client";
 
-import { Button, Form, Input, Tabs, Tag } from "antd";
+import { Button, Form, Input, message, Tabs, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Eye, View } from "lucide-react";
-import { useForm } from "antd/es/form/Form";
+import { useForm, useWatch } from "antd/es/form/Form";
 import SearchResult from "./SearchResult";
 
 const Demo = () => {
@@ -32,6 +32,7 @@ const Demo = () => {
       const data = res.data;
       setData(data.data);
     } catch (error: any) {
+      message.error("Unable to fetch data!");
       console.error("Error fetching data:", error.message);
     } finally {
       setIsLoading(false);
@@ -39,8 +40,13 @@ const Demo = () => {
     }
   };
 
+  const searchItem = useWatch("product", form);
+
   return (
-    <div className="flex flex-col justify-center items-center gap-10 bg-gradient-to-b backdrop-blur-xl from-primary/30 to-transparent pt-12 lg:py-24">
+    <div
+      id="demo"
+      className="flex flex-col justify-center items-center gap-10 bg-gradient-to-b backdrop-blur-xl from-primary/30 to-transparent pt-12 lg:py-24"
+    >
       <div className="space-y-3">
         <h3 className="font-semibold text-center text-3xl lg:text-4xl">
           See Your Competition's{" "}
@@ -72,6 +78,7 @@ const Demo = () => {
             loading={isLoading}
             className="rounded-md h-9 -mt-6"
             type="primary"
+            disabled={!searchItem}
             onClick={() => getData(form.getFieldValue("product"))}
           >
             Analyze Prices
