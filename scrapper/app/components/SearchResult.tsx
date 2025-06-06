@@ -72,7 +72,9 @@ const SearchResult = (props: Props) => {
     return (
       <div className="text-center pb-12 flex items-center gap-2 text-gray-600">
         <Spin />
-        <p className="">Fetching competitor data</p>
+        <p className="">
+          Fetching competitor data, hold on, this might take a few minuites...
+        </p>
       </div>
     );
   }

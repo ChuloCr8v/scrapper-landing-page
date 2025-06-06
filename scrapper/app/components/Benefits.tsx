@@ -8,6 +8,7 @@ import {
   ArrowRight,
   PlayIcon,
 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -39,10 +40,10 @@ const Benefits = () => {
   return (
     <section
       id="features"
-      className="py-20 relative z-20 place-self-center mt-48 w-screen bg-white flex flex-col justify-center items-center"
+      className="py-20 relative z-20 place-self-center mt-32 w-screen bg-white flex flex-col justify-center items-center"
     >
       <div className="space-y-10 px-4 -mt-48 flex flex-col justify-center items-center  max-w-7xl ">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-md:h-[300px] max-md:overflow-auto hide-scrollbar ">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4 max-md:h-[300px] max-md:overflow-auto hide-scrollbar ">
           {data.map((feature, index) => (
             <div
               key={index}
@@ -74,7 +75,7 @@ const Benefits = () => {
             icon={<ArrowRight className="mt-2" />}
             iconPosition="end"
           >
-            Get Started
+            <Link href="/#pricing">Get Started</Link>
           </Button>
           <Button
             type="default"
@@ -83,7 +84,7 @@ const Benefits = () => {
             iconPosition="end"
             size="large"
           >
-            Try Our Demo
+            <Link href="/#demo">Try Our Demo</Link>
           </Button>
         </div>
       </div>

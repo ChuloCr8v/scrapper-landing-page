@@ -34,10 +34,11 @@ import Demo from "./components/Demo";
 import Pricing from "./components/Pricing";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
+import CTA from "./components/CTA";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
       <header className="border-b relative z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -77,32 +78,7 @@ export default function LandingPage() {
       <Pricing />
       <Testimonials />
       <FAQ />
-
-      {/* Final CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-4">
-            Stop Guessing – Start Outpricing
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join 1,200+ eCommerce brands using our data to win the pricing war
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Claim Your Free Competitor Report
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-            >
-              Book a Strategy Call with Our Data Expert
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CTA />
 
       {/* Footer */}
       <footer className="py-12 border-t">

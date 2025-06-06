@@ -3,6 +3,7 @@ import { ArrowRight, Play, PlayIcon, TrendingUp } from "lucide-react";
 import React from "react";
 import { Button } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ const Hero = (props: Props) => {
               <h1 className="text-4xl lg:text-6xl font-bold text-center">
                 Win the Pricing War <br></br>
                 <span className="text-primary"> Automate</span> Your Competitor
-                <br></br> & Market Data Research
+                <br className="hidden md:block"></br> & Market Data Research
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl text-center">
                 Extract real-time product prices, reviews, and inventory levels
@@ -32,7 +33,9 @@ const Hero = (props: Props) => {
                 icon={<ArrowRight className="mt-2" />}
                 iconPosition="end"
               >
-                Get Your Free Competitor Price Report
+                <Link href={"/#demo"}>
+                  Get Your Free Competitor Price Report
+                </Link>
               </Button>
               <Button
                 type="default"
@@ -41,7 +44,7 @@ const Hero = (props: Props) => {
                 iconPosition="end"
                 size="large"
               >
-                See How It Works
+                <Link href={"/#pricing"}>Get Started</Link>
               </Button>
             </div>
           </div>

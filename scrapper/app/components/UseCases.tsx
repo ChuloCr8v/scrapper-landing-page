@@ -61,13 +61,13 @@ const UseCases = (props: Props) => {
           ))}
         </div>
 
-        <Button
+        {/* <Button
           className="p-6 rounded-xl bg-gradient-to-r to-blue-800 from-primary text-xl duration-200 mt-6"
           type="primary"
         >
           Get a Free Demo for Your Niche
           <ArrowRight className="ml-2 mt-1.5" />
-        </Button>
+        </Button> */}
       </div>
     </section>
   );

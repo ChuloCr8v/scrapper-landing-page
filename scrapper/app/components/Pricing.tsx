@@ -39,14 +39,17 @@ const Pricing = (props: Props) => {
 
   return (
     <section>
-      <div className="container mx-auto px-4">
+      <div
+        className="flex flex-col justify-center items-center mx-auto px-4"
+        id="pricing"
+      >
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Pricing for Every Scale
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-4 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-4 max-w-7xl w-full  mx-auto">
           {data.map((item, index) => (
             <div
               className={twMerge(
@@ -88,11 +91,15 @@ const Pricing = (props: Props) => {
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        {/* <div className="text-center mt-8">
           <p className="text-lg font-medium">
             7-day free trial – cancel if data isn't 95%+ accurate.
           </p>
-        </div>
+        </div> */}
+
+        <Button size="large" type="primary" className="place-self-center mt-12">
+          Custom Request
+        </Button>
       </div>
     </section>
   );

@@ -22,7 +22,7 @@ const Demo = () => {
         "http://localhost:8000/api/scraper/search",
         {
           search_term: product,
-          max_products: 1,
+          max_products: 10,
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -45,7 +45,7 @@ const Demo = () => {
   return (
     <div
       id="demo"
-      className="flex flex-col justify-center items-center gap-10 bg-gradient-to-b backdrop-blur-xl from-primary/30 to-transparent pt-12 lg:py-24"
+      className="flex flex-col justify-center items-center gap-10 bg-gradient-to-b backdrop-blur-xl from-primary/30 to-transparent pt-12 lg:py-24 px-4"
     >
       <div className="space-y-3">
         <h3 className="font-semibold text-center text-3xl lg:text-4xl">
