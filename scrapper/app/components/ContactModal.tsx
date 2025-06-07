@@ -190,7 +190,7 @@ const RequestServiceModal = ({
       <Form
         form={form}
         layout="vertical"
-        className="mt-6 grid grid-cols-2 gap-x-4"
+        className="mt-6 grid grid-cols-2 gap-x-2"
         initialValues={{
           plan: currentPlan.title,
           price: currentPlan.price,

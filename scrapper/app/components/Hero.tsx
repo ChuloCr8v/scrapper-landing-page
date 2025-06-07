@@ -51,16 +51,13 @@ const Hero = (props: Props) => {
         </div>
       </div>
 
-      <video
-        controls={false}
-        width="100%"
-        autoPlay
-        muted
-        loop
-        className="absolute top-[80%] z-0"
-      >
-        <source src="/hero-vid.mp4" type="video/mp4" />
-      </video>
+      <Image
+        src="/hero-vid.gif"
+        height={1000}
+        width={1000}
+        alt="scrapper"
+        className="w-full h-auto absolute top-[80%] z-0"
+      />
     </section>
   );
 };

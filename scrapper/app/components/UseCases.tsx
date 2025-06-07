@@ -38,16 +38,12 @@ const UseCases = (props: Props) => {
           How eCommerce Brands <br></br> Use Our Data
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 max-md:h-[300px] max-md:overflow-auto hide-scrollbar ">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 hide-scrollbar ">
           {data.map((feature, index) => (
             <div
               key={index}
               className={twMerge(
-                "text-center bg-white rounded-xl border-2 py-12 px-4 space-y-4 flex flex-col sticky top-0",
-                index === 1 && "top-3",
-                index === 2 && "top-6",
-                index === 3 && "top-9",
-                index === 4 && "top-12"
+                "text-center bg-white rounded-xl border-2 py-12 px-4 space-y-4 flex flex-col "
               )}
             >
               <div className="flex items-center gap-4">
