@@ -61,7 +61,6 @@ const RequestServiceModal = ({
       name: "name",
       type: "text",
       placeholder: "Enter your full name",
-      icon: <UserCircle className="text-gray-400" size={18} />,
       required: true,
     },
     {
@@ -69,7 +68,6 @@ const RequestServiceModal = ({
       name: "email",
       type: "email",
       placeholder: "Enter your email address",
-      icon: <Mail className="text-gray-400" size={18} />,
       required: true,
     },
     {
@@ -141,7 +139,6 @@ const RequestServiceModal = ({
             placeholder={item.placeholder}
             options={item.options}
             onChange={handleSetPricingItems}
-            suffixIcon={<ShoppingCart className="text-gray-400" size={18} />}
           />
         );
       case "number":
