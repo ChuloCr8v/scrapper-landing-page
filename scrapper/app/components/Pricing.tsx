@@ -1,41 +1,74 @@
+"use client";
+
 import { Button } from "antd";
 import { Check, CheckCircleIcon } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import ContactModal from "./ContactModal";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
+export type PricingItem = {
+  title: string;
+  subtitle: string;
+  price: number;
+  features: string[];
+};
+
+export const pricingItemData = {
+  title: "",
+  subtitle: "",
+  price: 0,
+  features: [""],
+};
+
+export const pricingData: PricingItem[] = [
+  {
+    title: "Demo",
+    subtitle: "A sneek into what we can offer you",
+    price: 0,
+    features: ["500 products/one-time", "1 Competitor", "CSV exports"],
+  },
+  {
+    title: "Starter",
+    subtitle: "Perfect for small businesses",
+    price: 99,
+    features: ["10,000 products/month", "Multiple Competitors", "CSV exports"],
+  },
+  {
+    title: "Growth",
+    subtitle: "For growing eCommerce stores",
+    price: 199,
+    features: ["50,000 products/month", "Multiple Competitors", "API access"],
+  },
+  {
+    title: "Agency",
+    subtitle: "For agencies and enterprises",
+    price: 399,
+    features: [
+      "250k products/month",
+      "Unlimited Competitors",
+      "White-label reports",
+    ],
+  },
+];
+
 const Pricing = (props: Props) => {
-  const data = [
-    {
-      title: "Demo",
-      subtitle: "A sneek into what we can offer you",
-      price: 0,
-      features: ["500 products/one-time", "1 Competitor", "CSV exports"],
-    },
-    {
-      title: "Starter",
-      subtitle: "Perfect for small businesses",
-      price: 99,
-      features: ["10,000 pages/month", "1 Competitor", "CSV exports"],
-    },
-    {
-      title: "Growth",
-      subtitle: "For growing eCommerce stores",
-      price: 99,
-      features: ["50,000 pages/month", "5 Competitors", "API access"],
-    },
-    {
-      title: "Agency",
-      subtitle: "For agencies and enterprises",
-      price: 99,
-      features: [
-        "250k pagess/month",
-        "Unlimited Competitors",
-        "White-label reports",
-      ],
-    },
-  ];
+  const [visible, setVisible] = useState(false);
+  const [pricingItems, setPricingItems] = useState(pricingItemData);
+  const router = useRouter();
+
+  const handleClick = (title: string, data?: PricingItem) => {
+    if (title === "Demo") {
+      router.push("/#demo");
+      return;
+    } else {
+      setVisible(true);
+      setPricingItems(data ?? pricingItemData);
+    }
+    setVisible(true);
+  };
 
   return (
     <section>
@@ -50,7 +83,7 @@ const Pricing = (props: Props) => {
         </div>
 
         <div className="grid md:grid-cols-4 gap-4 max-w-7xl w-full  mx-auto">
-          {data.map((item, index) => (
+          {pricingData.map((item, index) => (
             <div
               className={twMerge(
                 "border rounded-xl p-4 py-6 space-y-6 relative flex flex-col",
@@ -84,7 +117,11 @@ const Pricing = (props: Props) => {
                 ))}
               </div>
 
-              <Button type="primary" className="w-full h-9 font-semibold">
+              <Button
+                onClick={() => handleClick(item.title, item)}
+                type="primary"
+                className="w-full h-9 font-semibold"
+              >
                 Get Started
               </Button>
             </div>
@@ -101,6 +138,13 @@ const Pricing = (props: Props) => {
           Custom Request
         </Button>
       </div>
+
+      <ContactModal
+        visible={visible}
+        setVisible={setVisible}
+        data={pricingItems}
+        setPricingItems={setPricingItems}
+      />
     </section>
   );
 };
