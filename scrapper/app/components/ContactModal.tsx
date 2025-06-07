@@ -5,7 +5,7 @@ import { Modal, Form, Input, Select, Button, InputNumber, message } from "antd";
 import { DollarSign, Mail, ShoppingCart, UserCircle } from "lucide-react";
 import { pricingData, PricingItem, pricingItemData } from "./Pricing";
 import { twMerge } from "tailwind-merge";
-import { FaCheck, FaCheckCircle, FaCircle } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 const RequestServiceModal = ({
   visible,
@@ -24,20 +24,24 @@ const RequestServiceModal = ({
 
   useEffect(() => {
     setCurrentPlan(data);
-  }, [data]);
+    form.setFieldsValue({
+      plan: data.title,
+      price: data.price,
+    });
+  }, [data, form]);
 
   const handleOk = () => {
     form
       .validateFields()
       .then((values) => {
         setConfirmLoading(true);
-        // Here you would typically make an API call
         console.log("Form values:", values);
         setTimeout(() => {
           setVisible(false);
           setConfirmLoading(false);
           message.success("Service request submitted successfully!");
           form.resetFields();
+          setPricingItems(pricingItemData);
         }, 1500);
       })
       .catch((info) => {
@@ -58,6 +62,7 @@ const RequestServiceModal = ({
       type: "text",
       placeholder: "Enter your full name",
       icon: <UserCircle className="text-gray-400" size={18} />,
+      required: true,
     },
     {
       label: "Email",
@@ -65,18 +70,21 @@ const RequestServiceModal = ({
       type: "email",
       placeholder: "Enter your email address",
       icon: <Mail className="text-gray-400" size={18} />,
+      required: true,
     },
     {
       label: "Business Name",
       name: "businessName",
       type: "text",
       placeholder: "Enter your business name",
+      required: false,
     },
     {
       label: "Niche",
       name: "niche",
       type: "text",
       placeholder: "Enter your business niche",
+      required: false,
     },
     {
       label: "Plan",
@@ -87,6 +95,7 @@ const RequestServiceModal = ({
         value: item.title,
       })),
       initialValue: currentPlan.title,
+      required: true,
     },
     {
       label: "Price",
@@ -94,6 +103,7 @@ const RequestServiceModal = ({
       type: "number",
       initialValue: currentPlan.price,
       icon: <DollarSign className="text-gray-400" size={12} />,
+      required: true,
     },
     {
       label: "Extra Information",
@@ -101,17 +111,17 @@ const RequestServiceModal = ({
       type: "textarea",
       placeholder:
         "Provide extra information here, including your preferred products and other information",
+      required: false,
     },
   ];
 
-  const handleSetPricingItems = (title: string) => {
-    const planItem = pricingData.find((item) => item.title === title);
-
-    console.log(pricingData);
-    console.log(planItem);
-    console.log(currentPlan);
+  const handleSetPricingItems = (value: string) => {
+    const planItem = pricingData.find((item) => item.title === value);
     if (planItem) {
       setCurrentPlan(planItem);
+      form.setFieldsValue({
+        price: planItem.price,
+      });
     }
   };
 
@@ -120,8 +130,9 @@ const RequestServiceModal = ({
     type: string;
     placeholder?: string;
     options?: { label: string; value: string }[];
-    initialValue?: number;
+    initialValue?: number | string;
     icon?: React.ReactNode;
+    required?: boolean;
   }) => {
     switch (item.type) {
       case "select":
@@ -129,12 +140,13 @@ const RequestServiceModal = ({
           <Select
             placeholder={item.placeholder}
             options={item.options}
-            onChange={(value) => handleSetPricingItems(value)}
+            onChange={handleSetPricingItems}
+            suffixIcon={<ShoppingCart className="text-gray-400" size={18} />}
           />
         );
       case "number":
         return (
-          <Input
+          <InputNumber
             className="w-full"
             placeholder={item.placeholder}
             addonBefore={item.icon}
@@ -149,7 +161,7 @@ const RequestServiceModal = ({
           <Input
             placeholder={item.placeholder}
             type={item.type}
-            prefix={item.name === "price" ? item.icon : undefined}
+            prefix={item.icon}
           />
         );
     }
@@ -182,30 +194,40 @@ const RequestServiceModal = ({
         form={form}
         layout="vertical"
         className="mt-6 grid grid-cols-2 gap-x-4"
+        initialValues={{
+          plan: currentPlan.title,
+          price: currentPlan.price,
+        }}
       >
         {formData.map((item, index) => (
           <Form.Item
             key={index}
             name={item.name}
             label={item.label}
-            initialValue={item.initialValue}
+            rules={[
+              {
+                required: item.required,
+                message: `Please input your ${item.label.toLowerCase()}!`,
+              },
+            ]}
             className={twMerge(item.type === "textarea" && "col-span-2")}
             extra={
               item.name === "plan" ? (
                 <div className="mt-2 space-y-1">
-                  {currentPlan.features.map((i) => (
-                    <div className="flex items-center gap-2 text-xs text-primary">
+                  {currentPlan.features.map((feature, idx) => (
+                    <div
+                      className="flex items-center gap-2 text-xs text-primary"
+                      key={idx}
+                    >
                       <FaCheck className="text-[10px]" />
-                      <p className="" key={i}>
-                        {i}
-                      </p>
+                      <p>{feature}</p>
                     </div>
                   ))}
                 </div>
               ) : undefined
             }
           >
-            {renderFormItem(item as any)}
+            {renderFormItem(item)}
           </Form.Item>
         ))}
       </Form>
