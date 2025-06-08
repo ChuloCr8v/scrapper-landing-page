@@ -41,6 +41,10 @@ html {
   font-family: var(--font-raleway), sans-serif;
 }
 
+button {
+  font-family: var(--font-raleway), sans-serif;
+}
+
 .transition-max-height {
   transition: 1s ease !important;
 }

@@ -71,11 +71,8 @@ const Pricing = (props: Props) => {
   };
 
   return (
-    <section>
-      <div
-        className="flex flex-col justify-center items-center mx-auto px-4 mt-8"
-        id="pricing"
-      >
+    <section id="pricing" className="pt-8">
+      <div className="flex flex-col justify-center items-center mx-auto px-4 mt-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Pricing for Every Scale

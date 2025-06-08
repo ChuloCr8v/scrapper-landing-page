@@ -20,7 +20,7 @@ const PrimaryButton = ({ icon, link, text, className }: Props) => {
     >
       <Link
         href={link}
-        className="flex items-center justify-center gap-2 w-full"
+        className="flex items-center justify-center gap-2 w-full font-semibold"
       >
         {text}
         {icon}

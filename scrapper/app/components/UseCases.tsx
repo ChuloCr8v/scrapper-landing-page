@@ -32,30 +32,32 @@ const data = [
 ];
 const UseCases = (props: Props) => {
   return (
-    <section className="py-20 bg-gradient-to-b from-primary/20 to-transparent relative z-20">
-      <div className="max-w-7xl flex flex-col justify-center items-center mx-auto px-4">
+    <section
+      id="use-cases"
+      className="py-20 bg-gradient-to-b from-primary/20 to-transparent relative z-20"
+    >
+      <div className="max-w-7xl flex flex-col justify-center items-center gap-10 mx-auto px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
           How eCommerce Brands <br></br> Use Our Data
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 hide-scrollbar max-md:h-[300px] max-md:overflow-hidden">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4 max-md:h-[300px] max-md:overflow-auto hide-scrollbar ">
           {data.map((feature, index) => (
             <div
               key={index}
               className={twMerge(
-                "text-center bg-white rounded-xl border-2 py-12 px-4 space-y-4 flex flex-col sticky md:relative max-md:top-0 max-md:h-fit",
-                index === 1 && "max-md:top-4",
-                index === 2 && "max-md:top-8",
-                index === 3 && "max-md:top-12"
+                `text-center bg-white rounded-xl border-2 py-12 px-4 space-y-4 max-md:sticky top-0`,
+                index === 1 && "top-3",
+                index === 2 && "top-6",
+                index === 3 && "top-9",
+                index === 4 && "top-12"
               )}
             >
-              <div className="flex items-center gap-4">
-                <div className="">{feature.icon}</div>
+              <div>
+                {feature.icon}
                 <CardTitle>{feature.title}</CardTitle>
               </div>
-              <p className="text-muted-foreground text-left">
-                {feature.description}
-              </p>
+              <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}
         </div>

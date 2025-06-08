@@ -16,7 +16,7 @@ import PrimaryButton from "./PrimaryButton";
 import { FaArrowRight } from "react-icons/fa";
 import SecondaryButton from "./SecondaryButton";
 
-const data = [
+export const data = [
   {
     title: "Dynamic Repricing",
     description: "Track price changes hourly and auto-adjust your listings.",
@@ -42,11 +42,15 @@ const data = [
 
 const Benefits = () => {
   return (
-    <section className="py-20 relative z-20 place-self-center mt-32 w-screen bg-white flex flex-col justify-center items-center">
-      <div
-        id="features"
-        className="space-y-10 px-4 -mt-48 flex flex-col justify-center items-center  max-w-7xl "
-      >
+    <section
+      id="features"
+      className="py-20 pt-80 relative z-20 place-self-center w-screen bg-white flex flex-col justify-center items-center"
+    >
+      <div className="space-y-10 px-4 -mt-48 flex flex-col justify-center items-center  max-w-7xl ">
+        <h2 className="text-3xl font-semibold text-center">
+          Turn Competitor Websites Into<br></br> Your Secret Weapon
+        </h2>
+
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4 max-md:h-[300px] max-md:overflow-auto hide-scrollbar ">
           {data.map((feature, index) => (
             <div
@@ -67,10 +71,6 @@ const Benefits = () => {
             </div>
           ))}
         </div>
-
-        <h2 className="text-3xl font-semibold text-center">
-          Turn Competitor Websites Into<br></br> Your Secret Weapon
-        </h2>
 
         <div className="flex flex-col justify-center items-center sm:flex-row gap-4 mt-4 w-full">
           <PrimaryButton

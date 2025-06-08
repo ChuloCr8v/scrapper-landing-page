@@ -3,7 +3,7 @@
 import { Button, Form, Input, message, Tabs, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Eye, View } from "lucide-react";
+import { Eye, Search, View } from "lucide-react";
 import { useForm, useWatch } from "antd/es/form/Form";
 import SearchResult from "./SearchResult";
 
@@ -14,12 +14,11 @@ const Demo = () => {
   const [data, setData] = useState([]);
 
   const getData = async (product: string) => {
-    console.log(product);
     setIsLoading(true);
     await form.validateFields();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/scraper/search",
+        "https://scrapper-backend-n5mx.onrender.com/api/scraper/search",
         {
           search_term: product,
           max_products: 10,
@@ -60,7 +59,7 @@ const Demo = () => {
       </div>
 
       <div className="rounded-xl bg-primary/10 p-4 py-6 flex flex-col justify-center items-center max-w-xl w-full">
-        <Form form={form} className="flex items-center w-full px-4 gap-4">
+        <Form form={form} className="flex items-center w-full px-4 gap-2">
           <Form.Item
             name="product"
             className="w-full"
@@ -80,8 +79,10 @@ const Demo = () => {
             type="primary"
             disabled={!searchItem}
             onClick={() => getData(form.getFieldValue("product"))}
+            icon={<Search />}
+            iconPosition="start"
           >
-            Analyze Prices
+            Search
           </Button>
         </Form>
 

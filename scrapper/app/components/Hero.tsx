@@ -7,8 +7,8 @@ import PrimaryButton from "./PrimaryButton";
 
 const Hero = () => {
   return (
-    <section className="py-48 lg:py-28 flex flex-col justify-center items-center w-screen relative">
-      <div id="hero" className="px-4 max-w-7xl w-full relative z-20 md:pt-10">
+    <section className="py-48 lg:py-28 flex flex-col items-center w-screen relative h-screen">
+      <div id="hero" className="px-4 max-w-7xl w-full relative z-20 md:pt-20">
         <div className="flex flex-col justify-center items-center gap-12 w-full">
           <div className="space-y-12 w-full flex flex-col justify-center items-center">
             <div className="space-y-8 flex flex-col justify-center items-center">
@@ -40,7 +40,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="relative w-full flex flex-col justify-center items-center">
+      <div className="relative w-full flex flex-col justify-center items-center ">
         <div className="bg-gradient-to-b from-white to-transparent h-40 w-full absolute -top-10 z-10"></div>
         <Image
           src="/hero-vid.gif"

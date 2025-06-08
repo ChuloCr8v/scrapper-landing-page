@@ -20,7 +20,7 @@ const SecondaryButton = ({ link, icon, text, className }: Props) => {
     >
       <Link
         href={link}
-        className="flex items-center gap-2 w-full justify-center"
+        className="flex items-center gap-2 w-full justify-center  font-semibold"
       >
         {text}
         {icon}

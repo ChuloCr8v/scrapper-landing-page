@@ -44,7 +44,7 @@ const Header = () => {
     { title: "How it works", link: "#how-it-works" },
     { title: "Demo", link: "#demo" },
     { title: "Pricing", link: "#pricing" },
-    { title: "Testimonial", link: "#testimonial" },
+    { title: "Testimonial", link: "#testimonials" },
     { title: "FAQ", link: "#faq" },
   ];
 
@@ -83,9 +83,9 @@ const Header = () => {
           animate={{
             opacity: showNav ? 1 : 0,
             height: showNav ? "auto" : 0,
-            paddingTop: showNav && isMobile ? 48 : 0,
+            paddingTop: showNav && isMobile ? 32 : 0,
           }}
-          className="w-full md:w-fit md:space-x-6 space-y-2 h-full md:space-y-0 overflow-hidden md:flex items-center"
+          className="w-full md:w-fit md:space-x-6 space-y-4 h-full md:space-y-0 overflow-hidden md:flex items-center"
         >
           {navItems.map((item, index) => (
             <Link
@@ -93,7 +93,7 @@ const Header = () => {
               href={item.link}
               key={index}
               className={twMerge(
-                "md:text-sm font-medium hover:text-primary group relative duration-200 block md:pt-1 text-gray-700"
+                "text-lg md:text-sm font-bold md:font-medium hover:text-primary group relative duration-200 block md:pt-1 text-gray-700"
               )}
             >
               {item.title}

@@ -199,7 +199,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-12 py-12 mt-12 px-4">
+    <div
+      id="faq"
+      className="w-full flex flex-col justify-center items-center gap-12 py-12 mt-12 px-4"
+    >
       <h2 className="text-3xl lg:text-4xl capitalize font-semibold text-center">
         Frequently asked questions
       </h2>

@@ -1,19 +1,15 @@
 import {
+  ArrowBigRightDash,
   ChevronDown,
   Code,
   File,
   FileText,
-  Info,
-  List,
   Search,
-  ShoppingCart,
-  StarIcon,
-  Table,
 } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Button, Dropdown, MenuProps, Popover, Spin, Tag } from "antd";
-import ResultsTable from "./ResultsTable";
+import { Button, Dropdown, MenuProps, Spin, Tag } from "antd";
+import { FaStar } from "react-icons/fa";
 
 export type PriceData = {
   about: string;
@@ -66,8 +62,6 @@ const items: MenuProps["items"] = [
 ];
 
 const SearchResult = (props: Props) => {
-  const [tableView, setTableView] = useState(true);
-
   if (props.isLoading) {
     return (
       <div className="text-center pb-12 flex items-center gap-2 text-gray-600">
@@ -98,56 +92,47 @@ const SearchResult = (props: Props) => {
 
   return (
     <div className="space-y-4 w-full flex flex-col justify-center items-center">
-      <div className="max-w-7xl  w-full space-y-4">
+      <div className="max-w-3xl  w-full space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold">Competitve Price Analysis</h3>
           <div className="flex items-center gap-1">
             <Tag bordered={false} className="rounded-full">
               Found {props.data.length} competitors
             </Tag>
-
-            <Popover
-              content={tableView ? "View in list mode" : "View in table mode"}
-            >
-              <Button
-                type="primary"
-                onClick={() => setTableView(!tableView)}
-                className="px-1 bg-gradient-to-br from-primary to-blue-900 shadow-lg "
-              >
-                {tableView ? (
-                  <List className="h-5" />
-                ) : (
-                  <Table className="h-5" />
-                )}
-              </Button>
-            </Popover>
           </div>
         </div>
 
-        {!tableView ? (
-          <div className="space-y-4 h-96 overflow-y-auto w-full hide-scrollbar">
-            {props.data.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between border rounded-2xl p-4 bg-white overflow-hidden !backdrop-blur-2xl w-full sticky top-0"
-              >
-                <div className="flex items-center gap-4">
+        <div className="space-y-4 h-96 overflow-y-auto w-full hide-scrollbar bg-white rounded-xl shadow-lg p-6">
+          {props.data.map((item, index) => (
+            <div key={index} className="flex items-center">
+              <div className="flex items-center justify-between gap-4 w-full">
+                <div className="rounded-full border h-20 w-20 p-3 flex item-center justify-center overflow-hidden">
                   <Image
                     src={item.images[0]}
                     width={120}
                     height={120}
-                    className="rounded-xl border max-w-full object-contain h-20 w-20"
+                    className="max-w-full object-contain"
                     alt={item.title}
                   />
+                </div>
 
-                  <div className="space-y-2">
-                    <h2 className="font-semibold max-w-[550px]">
-                      {item.title.slice(0, 60)}...
+                <div className="flex items-center justify-between w-full">
+                  <div className="space-y-1">
+                    <h2 className="font-semibold max-w-[450px]">
+                      {item.title.slice(0, 30)}...
                     </h2>
 
-                    <div className="flex items-center gap-6">
-                      <p className="flex items-center">
-                        <StarIcon />
+                    <div className="flex items-center gap-4">
+                      <div className="flex space-x-2">
+                        <p className="">{item.price}00</p>
+                        <p className="text-red-600 text-xs flex items-center justify-center overflow-hidden relative">
+                          {item.original_price}{" "}
+                          <span className="absolute w-full bg-red-600 h-[1px]"></span>
+                        </p>
+                      </div>
+
+                      <p className="flex items-center gap-1">
+                        <FaStar className="text-yellow-400 mr-1" />
                         <span className="">{item.rating}</span>{" "}
                         <span>({item.review_count})</span>
                       </p>
@@ -160,41 +145,22 @@ const SearchResult = (props: Props) => {
                       </Tag>
                     </div>
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-md font-semibold">
-                    {item.currency} {item.price}
-                  </h3>
-                  <div className="flex items-end gap-2">
-                    <p className="space-x-2">
-                      <span className="text-gray-600 divide-dashed">
-                        {item.currency} {item.original_price}
-                      </span>
-                      <Tag color="red">
-                        {(Number(item.price.slice(0, 1)) /
-                          Number(item.original_price.slice(0, 1))) *
-                          100}
-                        % OFF
-                      </Tag>
-                    </p>
-                  </div>
-                  <Button icon={<ShoppingCart />}>
+
+                  <Button type="link" className="p-0 border-0 ">
                     <a
                       href={item.url}
-                      className=""
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="bg-primary/10 p-4 rounded-full text-primary text-xl"
                     >
-                      View Product
+                      <ArrowBigRightDash />
                     </a>
                   </Button>
                 </div>
               </div>
-            ))}
-          </div>
-        ) : (
-          <ResultsTable results={props.data} />
-        )}
+            </div>
+          ))}
+        </div>
 
         <div className="w-full flex items-end justify-end !mt-6">
           <Dropdown menu={{ items }} placement="bottomRight">
