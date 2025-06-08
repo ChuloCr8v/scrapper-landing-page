@@ -73,10 +73,10 @@ const Pricing = (props: Props) => {
   return (
     <section>
       <div
-        className="flex flex-col justify-center items-center mx-auto px-4"
+        className="flex flex-col justify-center items-center mx-auto px-4 mt-8"
         id="pricing"
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Pricing for Every Scale
           </h2>
@@ -87,7 +87,7 @@ const Pricing = (props: Props) => {
             <div
               className={twMerge(
                 "border rounded-xl p-4 py-6 space-y-6 relative flex flex-col",
-                index === 2 && "border-primary pt-0"
+                index === 2 && "border-primary pt-0 mt-4 md:mt-0"
               )}
               key={index}
             >

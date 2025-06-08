@@ -26,7 +26,7 @@ const Trust = (props: Props) => {
 
   return (
     <div className="flex flex-col justify-center items-center px-4">
-      <section className="max-w-[400px] md:max-w-2xl lg:max-w-4xl w-full lg:xl-w-5xl place-self-center py-12 bg-white border rounded-3xl relative z-20  lg:mt-20 shadow-lg">
+      <section className="max-w-5xl w-full place-self-center py-12 bg-white border rounded-3xl relative z-20  lg:mt-20 shadow-lg">
         <div className="px-4 text-center">
           <p className="text-2xl font-bold mb-8">
             Trusted by 200+ eCommerce brands and agencies

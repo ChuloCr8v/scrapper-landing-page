@@ -35,40 +35,13 @@ import Pricing from "./components/Pricing";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
+import Header from "./components/Header";
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
-      <header className="border-b relative z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <BarChart3 className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold">CompeteData</span>
-          </div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link
-              href="#features"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Features
-            </Link>
-            <Link
-              href="#pricing"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="#demo"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Demo
-            </Link>
-          </nav>
-        </div>
-      </header>
-
+      <Header />
       <Hero />
       <Trust />
       <Benefits />
