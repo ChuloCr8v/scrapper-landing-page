@@ -1,43 +1,17 @@
 "use client";
 
-import { Button, Form, Input, message, Tabs, Tag } from "antd";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Eye, Search, View } from "lucide-react";
+import { Button, Form, Input } from "antd";
+import React, { useState } from "react";
+import { Eye, Search } from "lucide-react";
 import { useForm, useWatch } from "antd/es/form/Form";
 import SearchResult from "./SearchResult";
+import { getData } from "../utils";
 
 const Demo = () => {
   const [form] = useForm();
   const [isLoading, setIsLoading] = useState(false);
 
   const [data, setData] = useState([]);
-
-  const getData = async (product: string) => {
-    setIsLoading(true);
-    await form.validateFields();
-    try {
-      const res = await axios.post(
-        "https://scrapper-backend-n5mx.onrender.com/api/scraper/search",
-        {
-          search_term: product,
-          max_products: 10,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-
-      const data = res.data;
-      setData(data.data);
-    } catch (error: any) {
-      message.error("Unable to fetch data!");
-      console.error("Error fetching data:", error.message);
-    } finally {
-      setIsLoading(false);
-      console.log("finished");
-    }
-  };
 
   const searchItem = useWatch("product", form);
 
@@ -78,8 +52,16 @@ const Demo = () => {
             className="rounded-md h-9 -mt-6"
             type="primary"
             disabled={!searchItem}
-            onClick={() => getData(form.getFieldValue("product"))}
-            icon={<Search />}
+            onClick={() =>
+              getData(
+                form.getFieldValue("product"),
+                setIsLoading,
+                form,
+                setData,
+                30
+              )
+            }
+            icon={<Search className="h-5" />}
             iconPosition="start"
           >
             Search
@@ -92,7 +74,7 @@ const Demo = () => {
         </p>
       </div>
 
-      <SearchResult data={data} isLoading={isLoading} />
+      <SearchResult data={data} isLoading={isLoading} product={searchItem} />
     </div>
   );
 };

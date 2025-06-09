@@ -1,15 +1,14 @@
-import {
-  ArrowBigRightDash,
-  ChevronDown,
-  Code,
-  File,
-  FileText,
-  Search,
-} from "lucide-react";
-import React from "react";
+"use client";
+
+import { ArrowBigRightDash, Search } from "lucide-react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Button, Dropdown, MenuProps, Spin, Tag } from "antd";
-import { FaStar } from "react-icons/fa";
+import { Button, Spin, Tag } from "antd";
+import { FaCloudDownloadAlt, FaStar } from "react-icons/fa";
+import { emailData } from "../utils";
+import { FormInstance, useForm } from "antd/es/form/Form";
+import ExportDataModal from "./ExportDataModal";
+import { PricingItem } from "./Pricing";
 
 export type PriceData = {
   about: string;
@@ -29,42 +28,15 @@ export type PriceData = {
 type Props = {
   data: PriceData[];
   isLoading: boolean;
+  product: string;
 };
 
-const items: MenuProps["items"] = [
-  {
-    key: "csv",
-    label: (
-      <div className="flex items-center gap-2">
-        <FileText className="h-5" />
-        <span>CSV (Excel compatible)</span>
-      </div>
-    ),
-  },
-  {
-    key: "xlsx",
-    label: (
-      <div className="flex items-center gap-2">
-        <File className="h-5" />
-        <span>Excel Workbook (.xlsx)</span>
-      </div>
-    ),
-  },
-  {
-    key: "json",
-    label: (
-      <div className="flex items-center gap-2">
-        <Code size={16} className="h-5" />
-        <span>JSON (Raw data)</span>
-      </div>
-    ),
-  },
-];
-
 const SearchResult = (props: Props) => {
+  const [openModal, setOpenModal] = useState(false);
+
   if (props.isLoading) {
     return (
-      <div className="text-center pb-12 flex items-center gap-2 text-gray-600">
+      <div className="text-center pb-12 flex flex-col md:flex-row items-center gap-2 text-gray-600">
         <Spin />
         <p className="">
           Fetching competitor data, hold on, this might take a few minuites...
@@ -94,17 +66,24 @@ const SearchResult = (props: Props) => {
     <div className="space-y-4 w-full flex flex-col justify-center items-center">
       <div className="max-w-3xl  w-full space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Competitve Price Analysis</h3>
+          <h3 className="text-xl font-semibold">Products List</h3>
           <div className="flex items-center gap-1">
-            <Tag bordered={false} className="rounded-full">
+            <Tag
+              bordered={false}
+              color="blue"
+              className="rounded-full font-semibold"
+            >
               Found {props.data.length} competitors
             </Tag>
           </div>
         </div>
 
-        <div className="space-y-4 h-96 overflow-y-auto w-full hide-scrollbar bg-white rounded-xl shadow-lg p-6">
+        <div className="space-y-4 bg-white rounded-xl border p-6">
           {props.data.map((item, index) => (
-            <div key={index} className="flex items-center">
+            <div key={index} className="flex flex-col items-center">
+              {index !== 0 && (
+                <div className="w-[70%] place-self-center my-2 bg-gray-200 h-[1px]"></div>
+              )}
               <div className="flex items-center justify-between gap-4 w-full">
                 <div className="rounded-full border h-20 w-20 p-3 flex item-center justify-center overflow-hidden">
                   <Image
@@ -163,14 +142,22 @@ const SearchResult = (props: Props) => {
         </div>
 
         <div className="w-full flex items-end justify-end !mt-6">
-          <Dropdown menu={{ items }} placement="bottomRight">
-            <Button type="primary" className="w-[144px]">
-              Export
-              <ChevronDown size={14} className="dropdown-chevron" />
-            </Button>
-          </Dropdown>
+          <Button
+            onClick={() => setOpenModal(true)}
+            type="primary"
+            className="w-[144px]"
+          >
+            Export
+            <FaCloudDownloadAlt className="text-lg" />
+          </Button>
         </div>
       </div>
+
+      <ExportDataModal
+        visible={openModal}
+        setVisible={setOpenModal}
+        product={props.product}
+      />
     </div>
   );
 };
