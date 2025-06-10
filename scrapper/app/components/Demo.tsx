@@ -49,7 +49,7 @@ const Demo = () => {
 
           <Button
             loading={isLoading}
-            className="rounded-md h-9 -mt-6"
+            className="rounded-md h-9 -mt-6 "
             type="primary"
             disabled={!searchItem}
             onClick={() =>
@@ -58,13 +58,12 @@ const Demo = () => {
                 setIsLoading,
                 form,
                 setData,
-                30
+                3
               )
             }
-            icon={<Search className="h-5" />}
-            iconPosition="start"
           >
             Search
+            <Search className="h-3.5 -ml-1" />
           </Button>
         </Form>
 

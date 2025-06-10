@@ -2,9 +2,9 @@ import { FormInstance, message } from "antd";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 
-const IS_DEV = true
+const IS_DEV = false
 
-const base_url = IS_DEV ? "http://localhost:8000" : "https://scrapper-backend-n5mx.onrender.com"
+const base_url = IS_DEV ? "http://localhost:8000" : "https://scrapper-server-jqyo.onrender.com"
 
 
 export const getData = async (product: string, setIsLoading: (arg: boolean) => void, form: FormInstance<any>, setData: (arg: any) => void, count: number = 2) => {
@@ -12,9 +12,8 @@ export const getData = async (product: string, setIsLoading: (arg: boolean) => v
     await form.validateFields();
     try {
         const res = await axios.post(
-            base_url + "/api/scraper/search",
+            base_url + `/api/products/search/${product}`,
             {
-                search_term: product,
                 max_products: count,
             },
             {
@@ -23,7 +22,8 @@ export const getData = async (product: string, setIsLoading: (arg: boolean) => v
         );
 
         const data = res.data;
-        setData(data.data);
+
+        setData(data);
     } catch (error: any) {
         message.error("Unable to fetch data!");
         console.error("Error fetching data:", error.message);

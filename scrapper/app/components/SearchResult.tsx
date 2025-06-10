@@ -11,15 +11,15 @@ import ExportDataModal from "./ExportDataModal";
 import { PricingItem } from "./Pricing";
 
 export type PriceData = {
-  about: string;
+  asin: string;
   availability: string;
+  brand: string;
   currency: string;
-  features: string[];
-  images: string[];
-  original_price: string;
+  description: string;
+  image: string;
   price: string;
   rating: string;
-  review_count: string;
+  reviewCount: string;
   seller: string;
   title: string;
   url: string;
@@ -87,7 +87,7 @@ const SearchResult = (props: Props) => {
               <div className="flex items-center justify-between gap-4 w-full">
                 <div className="rounded-full border h-20 w-20 p-3 flex item-center justify-center overflow-hidden">
                   <Image
-                    src={item.images[0]}
+                    src={item.image}
                     width={120}
                     height={120}
                     className="max-w-full object-contain"
@@ -103,17 +103,13 @@ const SearchResult = (props: Props) => {
 
                     <div className="flex items-center gap-4">
                       <div className="flex space-x-2">
-                        <p className="">{item.price}00</p>
-                        <p className="text-red-600 text-xs flex items-center justify-center overflow-hidden relative">
-                          {item.original_price}{" "}
-                          <span className="absolute w-full bg-red-600 h-[1px]"></span>
-                        </p>
+                        <p className="">{item.price}</p>
                       </div>
 
                       <p className="flex items-center gap-1">
                         <FaStar className="text-yellow-400 mr-1" />
                         <span className="">{item.rating}</span>{" "}
-                        <span>({item.review_count})</span>
+                        <span>({item.reviewCount})</span>
                       </p>
                       <Tag className="rounded-full">Amazon</Tag>
                       <Tag
