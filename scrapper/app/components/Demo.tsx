@@ -52,6 +52,8 @@ const Demo = () => {
             className="rounded-md h-9 -mt-6 "
             type="primary"
             disabled={!searchItem}
+            icon={<Search className="h-3.5 -ml-1 mt-1" />}
+            iconPosition="end"
             onClick={() =>
               getData(
                 form.getFieldValue("product"),
@@ -63,7 +65,6 @@ const Demo = () => {
             }
           >
             Search
-            <Search className="h-3.5 -ml-1" />
           </Button>
         </Form>
 

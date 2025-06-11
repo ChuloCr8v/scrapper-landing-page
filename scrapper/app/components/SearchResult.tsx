@@ -34,6 +34,8 @@ type Props = {
 const SearchResult = (props: Props) => {
   const [openModal, setOpenModal] = useState(false);
 
+  console.log(props.data);
+
   if (props.isLoading) {
     return (
       <div className="text-center pb-12 flex flex-col md:flex-row items-center gap-2 text-gray-600">
@@ -78,26 +80,37 @@ const SearchResult = (props: Props) => {
           </div>
         </div>
 
-        <div className="space-y-4 bg-white rounded-xl border p-6">
+        <div className="bg-white rounded-xl border overflow-hidden">
           {props.data.map((item, index) => (
-            <div key={index} className="flex flex-col items-center">
-              {index !== 0 && (
-                <div className="w-[70%] place-self-center my-2 bg-gray-200 h-[1px]"></div>
-              )}
-              <div className="flex items-center justify-between gap-4 w-full">
-                <div className="rounded-full border h-20 w-20 p-3 flex item-center justify-center overflow-hidden">
-                  <Image
-                    src={item.image}
-                    width={120}
-                    height={120}
-                    className="max-w-full object-contain"
-                    alt={item.title}
-                  />
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={index}
+              className="flex flex-col items-center relative hover:bg-primary/10 p-6 border-b duration-200"
+            >
+              {/* {index !== 0 && (
+                <div className="w-full md:w-[70%] place-self-center bg-gray-200 h-[1px] my-3"></div>
+              )} */}
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full">
+                <div className="flex items-center gap-2">
+                  <div className="rounded-full md:border md:h-20 md:w-20 w-full p-3 flex item-center justify-center overflow-hidden">
+                    <Image
+                      src={item.image.trim()}
+                      width={120}
+                      height={120}
+                      className="max-w-full object-contain"
+                      alt={item.title}
+                    />
+                  </div>
+                  <h2 className="font-semibold w-full text-left">
+                    {item.title.slice(0, 50)}...
+                  </h2>
                 </div>
 
                 <div className="flex items-center justify-between w-full">
                   <div className="space-y-1">
-                    <h2 className="font-semibold max-w-[450px]">
+                    <h2 className="hidden md:flex font-semibold max-w-[450px]">
                       {item.title.slice(0, 30)}...
                     </h2>
 
@@ -121,19 +134,19 @@ const SearchResult = (props: Props) => {
                     </div>
                   </div>
 
-                  <Button type="link" className="p-0 border-0 ">
+                  <Button type="link" className="p-0 border-0">
                     <a
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary/10 p-4 rounded-full text-primary text-xl"
+                      className="bg-primary/10 p-4 rounded-full text-primary text-xl hidden md:flex"
                     >
                       <ArrowBigRightDash />
                     </a>
                   </Button>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

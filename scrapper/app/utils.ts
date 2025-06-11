@@ -2,7 +2,7 @@ import { FormInstance, message } from "antd";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 
-const IS_DEV = false
+const IS_DEV = true
 
 const base_url = IS_DEV ? "http://localhost:8000" : "https://scrapper-server-jqyo.onrender.com"
 
@@ -34,19 +34,17 @@ export const getData = async (product: string, setIsLoading: (arg: boolean) => v
 };
 
 
-export const emailData = async (product: string, form: FormInstance<any>, count: number = 1, email: string, setVisible: Dispatch<SetStateAction<boolean>>
+export const emailData = async (name: string, product: string, form: FormInstance<any>, email: string, setVisible: Dispatch<SetStateAction<boolean>>
 ) => {
     await form.validateFields();
     try {
         axios.post(
-            base_url + "/api/scraper/email-response",
+            base_url + "/api/products/send-demo",
             {
-                request: {
-                    search_term: product,
-                    max_products: count
-                },
 
-                email_request: { recipient_email: email }
+                keyword: product,
+                name,
+                email
             },
             {
                 headers: { "Content-Type": "application/json" },

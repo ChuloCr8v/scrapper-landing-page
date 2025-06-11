@@ -16,6 +16,7 @@ const ExportDataModal = ({
   const [form] = Form.useForm();
 
   const email = form.getFieldValue("email");
+  const name = form.getFieldValue("name");
 
   const handleCancel = () => {
     setVisible(false);
@@ -24,7 +25,7 @@ const ExportDataModal = ({
 
   return (
     <Modal
-      title="Service Request Form"
+      title="Get Competitor Data"
       open={visible}
       onCancel={handleCancel}
       width={500}
@@ -35,7 +36,7 @@ const ExportDataModal = ({
         <Button
           key="submit"
           type="primary"
-          onClick={() => emailData(product, form, 10, email, setVisible)}
+          onClick={() => emailData(name, product, form, email, setVisible)}
           className="bg-blue-600 hover:bg-blue-700"
         >
           Send
@@ -44,8 +45,21 @@ const ExportDataModal = ({
     >
       <Form form={form} layout="vertical" className="mt-6">
         <Form.Item
+          name={"name"}
+          label={"Full Name"}
+          rules={[
+            {
+              required: true,
+              message: `Please input your full name!`,
+            },
+          ]}
+        >
+          <Input placeholder="Enter full name" />
+        </Form.Item>
+        <Form.Item
           name={"email"}
           label={"Email"}
+          className="-mt-2"
           rules={[
             {
               required: true,
