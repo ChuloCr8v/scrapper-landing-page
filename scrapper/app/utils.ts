@@ -2,7 +2,7 @@ import { FormInstance, message } from "antd";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 
-const IS_DEV = false
+const IS_DEV = true
 
 const base_url = IS_DEV ? "http://localhost:8000" : "https://scrapper-server-jqyo.onrender.com"
 
@@ -34,7 +34,7 @@ export const getData = async (product: string, setIsLoading: (arg: boolean) => v
 };
 
 
-export const emailData = async (name: string, product: string, form: FormInstance<any>, email: string, setVisible: Dispatch<SetStateAction<boolean>>
+export const emailData = async (name: string, product: string, form: FormInstance<any>, email: string, setVisible: Dispatch<SetStateAction<boolean>>, openNotification: () => void
 ) => {
     await form.validateFields();
     try {
@@ -54,8 +54,9 @@ export const emailData = async (name: string, product: string, form: FormInstanc
         message.success(
             "Your request is being processed and will be sent by email. Please hold on!"
         )
-
+        form.resetFields()
         setVisible(false)
+        openNotification()
 
     } catch (error: any) {
         message.error("Unable to fetch data!");

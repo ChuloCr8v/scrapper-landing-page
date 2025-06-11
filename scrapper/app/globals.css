@@ -129,3 +129,8 @@ button {
     @apply bg-background text-foreground;
   }
 }
+
+:where(.css-dev-only-do-not-override-5uvb3z).ant-modal .ant-modal-content {
+  padding: 0 !important;
+  overflow: hidden;
+}

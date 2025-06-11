@@ -3,12 +3,9 @@
 import { ArrowBigRightDash, Search } from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
-import { Button, Spin, Tag } from "antd";
-import { FaCloudDownloadAlt, FaStar } from "react-icons/fa";
-import { emailData } from "../utils";
-import { FormInstance, useForm } from "antd/es/form/Form";
+import { Button, notification, Spin, Tag } from "antd";
+import { FaCloudDownloadAlt, FaRegCheckCircle, FaStar } from "react-icons/fa";
 import ExportDataModal from "./ExportDataModal";
-import { PricingItem } from "./Pricing";
 
 export type PriceData = {
   asin: string;
@@ -33,8 +30,7 @@ type Props = {
 
 const SearchResult = (props: Props) => {
   const [openModal, setOpenModal] = useState(false);
-
-  console.log(props.data);
+  const [api, contextHolder] = notification.useNotification();
 
   if (props.isLoading) {
     return (
@@ -63,6 +59,15 @@ const SearchResult = (props: Props) => {
       </div>
     );
   }
+
+  const openNotification = () => {
+    api.open({
+      message: "Processing products list",
+      description:
+        "Your request is currently processing and will be sent to your email once completed.",
+      icon: <FaRegCheckCircle style={{ color: "#108ee9" }} />,
+    });
+  };
 
   return (
     <div className="space-y-4 w-full flex flex-col justify-center items-center">
@@ -103,7 +108,7 @@ const SearchResult = (props: Props) => {
                       alt={item.title}
                     />
                   </div>
-                  <h2 className="font-semibold w-full text-left">
+                  <h2 className="font-semibold w-full text-left md:hidden">
                     {item.title.slice(0, 50)}...
                   </h2>
                 </div>
@@ -116,13 +121,13 @@ const SearchResult = (props: Props) => {
 
                     <div className="flex items-center gap-4">
                       <div className="flex space-x-2">
-                        <p className="">{item.price}</p>
+                        <p className="">${item.price}</p>
                       </div>
 
                       <p className="flex items-center gap-1">
                         <FaStar className="text-yellow-400 mr-1" />
                         <span className="">{item.rating}</span>{" "}
-                        <span>({item.reviewCount})</span>
+                        <span>({item.reviewCount} reviews)</span>
                       </p>
                       <Tag className="rounded-full">Amazon</Tag>
                       <Tag
@@ -166,7 +171,10 @@ const SearchResult = (props: Props) => {
         visible={openModal}
         setVisible={setOpenModal}
         product={props.product}
+        openNotification={openNotification}
       />
+
+      {contextHolder}
     </div>
   );
 };
