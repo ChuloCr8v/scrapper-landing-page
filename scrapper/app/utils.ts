@@ -2,7 +2,7 @@ import { FormInstance, message } from "antd";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 
-const IS_DEV = true
+const IS_DEV = false
 
 const base_url = IS_DEV ? "http://localhost:8000" : "https://scrapper-server-jqyo.onrender.com"
 
