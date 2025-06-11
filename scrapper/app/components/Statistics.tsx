@@ -6,12 +6,12 @@ const data = [
     count: "2.5M+",
   },
   {
-    label: "Happy Clients",
-    count: "200+",
-  },
-  {
     label: "Accuracy",
     count: "98.9%",
+  },
+  {
+    label: "Happy Clients",
+    count: "200+",
   },
 ];
 
