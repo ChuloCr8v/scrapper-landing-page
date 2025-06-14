@@ -14,6 +14,7 @@ import CTA from "./components/CTA";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Statistics from "./components/Statistics";
+import ProofOfWork from "./components/ProofOfWork";
 
 export default function LandingPage() {
   return (
@@ -26,6 +27,7 @@ export default function LandingPage() {
       <UseCases />
       <HowItWoks />
       <Demo />
+      <ProofOfWork />
       <Pricing />
       <Testimonials />
       <FAQ />

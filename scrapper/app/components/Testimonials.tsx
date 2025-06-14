@@ -45,14 +45,19 @@ const Testimonials = (props: Props) => {
   return (
     <section
       id="testimonials"
-      className="py-24 mt-24 bg-muted/50 bg-gradient-to-b from-green-600/20 to-transparent"
+      className="pt-24 mt-24 bg-muted/50 bg-gradient-to-b from-green-600/20 to-transparent"
     >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl lg:text-4xl font-bold mb-16 text-center">
           eCommerce Brands <br></br> We've Empowered
         </h2>
 
-        <Marquee loop={0} pauseOnClick pauseOnHover className="grid gap-4">
+        <Marquee
+          loop={0}
+          pauseOnClick
+          pauseOnHover
+          className="grid gap-4 pb-24"
+        >
           {testimonials.map((item) => (
             <div className="bg-white rounded-2xl shadow max-w-[350px] mx-2">
               <div className="p-6">

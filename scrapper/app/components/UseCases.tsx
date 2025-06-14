@@ -11,23 +11,23 @@ const data = [
     title: "Amazon Sellers",
     description:
       "Monitor Buy Box winners, pricing history, and review sentiment.",
-    icon: <Target className="h-5 w-5 text-orange-500" />,
+    icon: <Target className=" text-orange-500" />,
   },
   {
     title: "Shopify Stores",
     description:
       "Track competitor discount strategies and new product launches.",
-    icon: <Zap className="h-5 w-5 text-green-500" />,
+    icon: <Zap className=" text-green-500" />,
   },
   {
     title: "DTC Brands",
     description: "Discover unauthorized sellers undercutting your MAP pricing.",
-    icon: <Shield className="h-5 w-5 text-red-500" />,
+    icon: <Shield className=" text-red-500" />,
   },
   {
     title: "Retail Agencies",
     description: "White-label data feeds for your clients' dashboards.",
-    icon: <Users className="h-5 w-5 text-purple-500" />,
+    icon: <Users className=" text-purple-500" />,
   },
 ];
 const UseCases = (props: Props) => {
@@ -46,18 +46,20 @@ const UseCases = (props: Props) => {
             <div
               key={index}
               className={twMerge(
-                `text-center bg-white rounded-xl border-2 py-12 px-4 space-y-4 max-md:sticky top-0`,
+                `text-center bg-white rounded-xl border-2  max-md:sticky top-0`,
                 index === 1 && "top-3",
                 index === 2 && "top-6",
                 index === 3 && "top-9",
                 index === 4 && "top-12"
               )}
             >
-              <div>
-                {feature.icon}
-                <CardTitle>{feature.title}</CardTitle>
+              <div className="relative py-12 px-4 space-y-4 h-full w-full">
+                <div className="flex flex-col justify-center items-center gap-4">
+                  {feature.icon}
+                  <CardTitle>{feature.title}</CardTitle>
+                </div>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
-              <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}
         </div>
