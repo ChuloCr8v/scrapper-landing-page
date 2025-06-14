@@ -51,7 +51,7 @@ const Header = () => {
   return (
     <motion.header
       className={twMerge(
-        "w-screen fixed top-0 left-0 border-b bg-white/20 backdrop-blur-lg z-50 overflow-hidden"
+        "w-screen fixed top-0 left-0 border-b bg-white/20 backdrop-blur-lg z-[99999] overflow-hidden"
       )}
       animate={{
         y: hidden ? -100 : 0,

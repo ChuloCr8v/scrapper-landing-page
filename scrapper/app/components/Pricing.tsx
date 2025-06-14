@@ -72,7 +72,10 @@ const Pricing = (props: Props) => {
   };
 
   return (
-    <section id="pricing" className="pt-8">
+    <section
+      id="pricing"
+      className="pt-8 w-screen bg-gradient-to-b from-green-100 to-transparent "
+    >
       <div className="flex flex-col justify-center items-center mx-auto px-4 mt-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -80,11 +83,11 @@ const Pricing = (props: Props) => {
           </h2>
         </div>
 
-        <div className="flex items-start justify-between max-w-[600px] w-full border rounded-xl p-4 relative">
+        <div className="flex items-start justify-between max-w-[600px] w-full border rounded-xl p-6 relative bg-white/40">
           <div className="">
             <p className="text-2xl font-semibold">{pricingData[0].title}</p>
             <p className="text-gray-600">{pricingData[0].subtitle}</p>
-            <div className="space-y-1 -ml-1 mt-2">
+            <div className="space-y-1 -ml-1 mt-4">
               {pricingData[0].features.map((f, index) => (
                 <div className="flex items-center gap-2" key={index}>
                   <CheckCircleIcon className="h-4 text-primary" />{" "}
@@ -114,7 +117,7 @@ const Pricing = (props: Props) => {
           {pricingData.slice(1).map((item, index) => (
             <div
               className={twMerge(
-                "border rounded-xl p-4 py-6 space-y-6 relative flex flex-col",
+                "border rounded-xl p-4 py-6 space-y-6 relative flex flex-col  bg-white/40",
                 index === 1 && "border-primary pt-0 mt-4 md:mt-0"
               )}
               key={index}
