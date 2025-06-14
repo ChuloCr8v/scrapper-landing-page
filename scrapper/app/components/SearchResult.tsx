@@ -104,7 +104,7 @@ const SearchResult = (props: Props) => {
                       src={item.image.trim()}
                       width={120}
                       height={120}
-                      className="max-w-full object-contain"
+                      className="max-w-full h-20 object-contain -mt-3"
                       alt={item.title}
                     />
                   </div>
@@ -113,15 +113,15 @@ const SearchResult = (props: Props) => {
                   </h2>
                 </div>
 
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center justify-between w-full md:border-none md:p-0 border p-2 rounded-xl">
                   <div className="space-y-1">
                     <h2 className="hidden md:flex font-semibold max-w-[450px]">
                       {item.title.slice(0, 30)}...
                     </h2>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center flex-wrap gap-4">
                       <div className="flex space-x-2">
-                        <p className="">${item.price}</p>
+                        <p className="font-semibold text-xl">${item.price}</p>
                       </div>
 
                       <p className="flex items-center gap-1">

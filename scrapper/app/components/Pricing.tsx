@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "antd";
-import { Check, CheckCircleIcon } from "lucide-react";
+import { ArrowRight, Check, CheckCircleIcon } from "lucide-react";
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ContactModal from "./ContactModal";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Props = {};
 
@@ -79,16 +80,46 @@ const Pricing = (props: Props) => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-4 max-w-7xl w-full  mx-auto">
-          {pricingData.map((item, index) => (
+        <div className="flex items-start justify-between max-w-[600px] w-full border rounded-xl p-4 relative">
+          <div className="">
+            <p className="text-2xl font-semibold">{pricingData[0].title}</p>
+            <p className="text-gray-600">{pricingData[0].subtitle}</p>
+            <div className="space-y-1 -ml-1 mt-2">
+              {pricingData[0].features.map((f, index) => (
+                <div className="flex items-center gap-2" key={index}>
+                  <CheckCircleIcon className="h-4 text-primary" />{" "}
+                  <span className="text-gray-600">{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="">
+            <span className="text-4xl text-black font-semibold">
+              ${pricingData[0].price}
+            </span>
+            /month
+          </div>
+
+          <Button
+            type="primary"
+            className="rounded-full absolute bottom-4 right-4 h-12 w-12"
+          >
+            <Link href={"/#demo"}>
+              <ArrowRight className="animate-pulse !text-2xl" />
+            </Link>
+          </Button>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-4 max-w-7xl w-full mt-8 mx-auto">
+          {pricingData.slice(1).map((item, index) => (
             <div
               className={twMerge(
                 "border rounded-xl p-4 py-6 space-y-6 relative flex flex-col",
-                index === 2 && "border-primary pt-0 mt-4 md:mt-0"
+                index === 1 && "border-primary pt-0 mt-4 md:mt-0"
               )}
               key={index}
             >
-              {index === 2 && (
+              {index === 1 && (
                 <div className="place-self-center bg-primary text-white rounded-full px-3 py-1 absolute -top-4 w-fit">
                   Most Popular
                 </div>
